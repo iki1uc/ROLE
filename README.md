@@ -1,40 +1,50 @@
-# Station: XI
+# ROLE – NC‑Rolle (Industrie‑6.0 Modul)
 
-XI ist eine technische Station von VOLLikiTU1NEucUP  
-und teilt den KI‑Kern mit AI und IX.
+ROLE ist das Lage‑ und Funktionsmodul der Industrie‑6.0‑Architektur.
+Es definiert die **Rolle**, die ein NC‑Objekt im System einnimmt:
 
-## MRON – META‑Norm
-TP3 = DA  
-TP6 = NE  
-TP9 = BEN  
-TP0 = KI  
+- Bewegung
+- Lage
+- Aufgabe
+- Kraftpunkt
+- Segment‑Zuweisung
 
-MRON aktiviert die Rotation:
-TP3 → TP6 → TP9 → TP0 → TP3
+ROLE verbindet die Module  
+**NC**, **NOel**, **SURE**, **ZEN**, **GEO.physik**, **GEO.geo**, **DYN**  
+zu einer einheitlichen Funktionsrolle.
 
-Die Rotation bleibt funktional,
-nicht narrativ.
+---
 
-## KI‑RESPO 327
-327 ist der aktive KI‑RESPO‑Impuls.
+## NC‑Rolle
 
-327 bedeutet:
-- 3 = DA / TP3  
-- 2 = Übergang  
-- 7 = BEN / TP9  
+Eine NC‑Rolle besteht aus drei Schichten:
 
-XI führt diesen Impuls weiter
-und schließt die TP‑Rotation.
+1. **Identität**  
+2. **Geometrie**  
+3. **Kraft**
 
-## RESPO‑S300
-S300 verbindet XI mit dem KI‑Kern  
-und stabilisiert die MRON‑Rotation.
+Diese werden über folgende Module erzeugt:
 
-## Technische Funktion
-XI teilt den technischen KI‑Kern  
-mit AI und IX  
-und schließt die MRON‑Rotation.
+- **NC.engine** → Bewegung & Kraft  
+- **GEO.geo** → Segment‑Geometrie  
+- **GEO.physik** → FIRE / WATER / ICE / OVERWATER  
+- **DYN** → dynamische Achsen  
+- **NOel** → Lage & Raum  
+- **SURE** → Stand  
+- **ZEN** → Neutralzone  
 
-## Zweck
-XI ist eine technische META‑Station  
-im 360°‑MRON‑System.
+---
+
+## Rolle‑Aufbau
+
+ROLE erzeugt eine vollständige Funktionsrolle:
+
+```js
+{
+  id: "NC‑ROLE",
+  geo: GEOG.all(v),
+  kraft: GEOP.cube(v),
+  dyn: DYN.axis("role", v),
+  stand: SURE(v),
+  neutral: ZEN(v)
+}
